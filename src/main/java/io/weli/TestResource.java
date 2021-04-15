@@ -39,9 +39,13 @@ public class TestResource {
     public Response get() throws Exception {
         String path = String.format("http://localhost:8080/%s/resources/test/set_cookie", SEG);
 
+        // todo: try to use a filter to deal with cookie
+        // reference: https://www.lenar.io/how-to-add-cookie-to-resteasy-client-requests/
+
         //Make a call to the "set_cookie" endpoint expecting a cookie (JSESSIONID by default) to be set.
         WebTarget target = environment.getClient()
                 .target(path);
+
 
         Response response = target.request().post(null);
 
