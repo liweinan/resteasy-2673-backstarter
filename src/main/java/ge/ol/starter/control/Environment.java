@@ -25,7 +25,8 @@ public class Environment {
             cookieName = "JSESSIONID";
         }
 
-        internalClient = new ResteasyClientBuilder()
+
+        internalClient = (ResteasyClient) ResteasyClientBuilder.newBuilder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .build();
