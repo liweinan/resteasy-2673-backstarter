@@ -36,19 +36,20 @@ public class TestResource {
     public static final String SEG = "back-starter";
 
     @GET
-    public Response exportFile(@QueryParam("token") String token) throws Exception {
+    public Response get() throws Exception {
         String path = String.format("http://localhost:8080/%s/resources/test/set_cookie", SEG);
+
         //Make a call to the "set_cookie" endpoint expecting a cookie (JSESSIONID by default) to be set.
         WebTarget target = environment.getClient()
                 .target(path);
-        Response response = target.request()
-                .post(Entity.entity("<test><a>b</a></test>", MediaType.APPLICATION_XML));
+
+        Response response = target.request().post(null);
+
         if (response.getStatus() != 200) {
             //the set_cookie enpoint signalled that a JSESSIONID cookie has been passed to it
-            return Response.status(Response.Status.FORBIDDEN)
-                    .entity(response.readEntity(String.class))
-                    .build();
+            return response;
         }
+
         //the cookie was successfully set
         return Response.status(Response.Status.OK)
                 .entity(String.join("=", environment.getCookieName(), response.getCookies().get(environment.getCookieName()).getValue()))
