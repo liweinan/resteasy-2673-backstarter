@@ -1,6 +1,4 @@
-package ge.ol.starter.admin.boundary;
-
-import ge.ol.starter.control.Environment;
+package io.weli;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +31,7 @@ public class TestResource {
     public Response exportFile(@QueryParam("token") String token) throws Exception {
         //Make a call to the "set_cookie" endpoint expecting a cookie (JSESSIONID by default) to be set.
         WebTarget target = environment.getClient()
-                .target("http://localhost:8080/back-starter/resources/test/set_cookie");
+                .target("http://localhost:8080/resources/test/set_cookie");
         Response response = target.request()
                 .post(Entity.entity("<test><a>b</a></test>", MediaType.APPLICATION_XML));
         if (response.getStatus() != 200) {

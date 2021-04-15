@@ -8,7 +8,7 @@
 
     <properties>
         <resteasy.version>4.4.2.Final</resteasy.version>
-        <jetty.maven.plugin.ver>9.4.24.v20191120</jetty.maven.plugin.ver>
+        <jetty.maven.plugin.ver>11.0.2</jetty.maven.plugin.ver>
         <javax.servlet.ver>4.0.1</javax.servlet.ver>
         <jupiter.engine.ver>5.1.0</jupiter.engine.ver>
         <version.org.springframework>5.0.14.RELEASE</version.org.springframework>
@@ -23,7 +23,6 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>${javax.servlet.ver}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
@@ -50,6 +49,11 @@
             <artifactId>javaee-api</artifactId>
             <version>8.0</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.servlet</groupId>
+            <artifactId>weld-servlet-core</artifactId>
+            <version>3.0.4.Final</version>
         </dependency>
     </dependencies>
     <build>

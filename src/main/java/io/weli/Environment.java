@@ -1,4 +1,4 @@
-package ge.ol.starter.control;
+package io.weli;
 
 import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
