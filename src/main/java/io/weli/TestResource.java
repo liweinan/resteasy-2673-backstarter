@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 
-@Path("test")
+@Path("/test")
 public class TestResource {
 
     @Inject
@@ -28,10 +28,19 @@ public class TestResource {
     private HttpServletRequest request;
 
     @GET
+    @Path("/foo")
+    public String foo() {
+        return "foo";
+    }
+
+    public static final String SEG = "back-starter";
+
+    @GET
     public Response exportFile(@QueryParam("token") String token) throws Exception {
+        String path = String.format("http://localhost:8080/%s/resources/test/set_cookie", SEG);
         //Make a call to the "set_cookie" endpoint expecting a cookie (JSESSIONID by default) to be set.
         WebTarget target = environment.getClient()
-                .target("http://localhost:8080/resources/test/set_cookie");
+                .target(path);
         Response response = target.request()
                 .post(Entity.entity("<test><a>b</a></test>", MediaType.APPLICATION_XML));
         if (response.getStatus() != 200) {

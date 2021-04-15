@@ -6,6 +6,7 @@ import javax.annotation.PreDestroy;
 import javax.annotation.security.PermitAll;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 
@@ -19,12 +20,10 @@ public class Environment {
 
     @PostConstruct
     public void init() {
-
         cookieName = System.getProperty("TEST_COOKIE_NAME");
         if (cookieName == null) {
             cookieName = "JSESSIONID";
         }
-
 
         internalClient = (ResteasyClient) ResteasyClientBuilder.newBuilder()
                 .connectTimeout(10, TimeUnit.SECONDS)
