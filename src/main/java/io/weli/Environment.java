@@ -6,6 +6,7 @@ import javax.annotation.PreDestroy;
 import javax.annotation.security.PermitAll;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ws.rs.core.Configuration;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -25,9 +26,13 @@ public class Environment {
             cookieName = "JSESSIONID";
         }
 
+        Configuration config = null;
+
+
         internalClient = (ResteasyClient) ResteasyClientBuilder.newBuilder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
+                .register(new CookiesFilter())
                 .build();
 
     }
