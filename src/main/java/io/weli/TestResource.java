@@ -60,7 +60,7 @@ public class TestResource {
     @POST
     @Path("set_cookie")
     public Response setCookie() {
-        System.out.println("<><><>" + request);
+        System.out.println("<><><>" + request.hashCode());
 
         //if the request contains a cookie with the specified name (JSESSIONID by default), return a different response.
         if (request.getCookies() != null) {
